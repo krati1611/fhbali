@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FH · Nyang Nyang — Social Posts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; height: 100%; background: #EDE7DC; font-family: "Jost", system-ui, sans-serif; }
+  #root { height: 100vh; }
+  .backlink {
+    position: fixed; top: 16px; left: 16px; z-index: 100;
+    display: inline-flex; align-items: center; gap: 9px;
+    background: rgba(36,26,18,0.92); color: #F4ECDF; text-decoration: none;
+    padding: 10px 16px; border-radius: 999px; font-size: 12px; letter-spacing: 0.16em;
+    text-transform: uppercase; backdrop-filter: blur(8px);
+  }
+  .backlink:hover { background: #B5673E; }
+</style>
+</head>
+<body>
+<a class="backlink" href="FH Bali.html">← Back to site</a>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel" src="posts.jsx"></script>
+<script type="text/babel">
+const { useState } = React;
+const K = 0.34;                         // display scale for most posts
+const Kw = 0.40;                        // wider scale for landscape link cards
+
+// platform pixel specs
+const SPEC = {
+  igSquare:  [1080, 1080],
+  igPortrait:[1080, 1350],
+  igStory:   [1080, 1920],
+  pin:       [1000, 1500],
+  fbLink:    [1200, 630],
+  xPost:     [1600, 900],
+};
+
+function art({ id, label, spec, k = K, render }) {
+  const [dw, dh] = SPEC[spec];
+  return (
+    <DCArtboard id={id} label={label} width={Math.round(dw * k)} height={Math.round(dh * k)}>
+      <FHFrame dw={dw} dh={dh} k={k}>{render(dw, dh)}</FHFrame>
+    </DCArtboard>
+  );
+}
+
+function App() {
+  return (
+    <DesignCanvas>
+      <DCSection id="instagram" title="Instagram" subtitle="Square 1:1 · Portrait 4:5 · Story 9:16">
+        {art({ id:"ig-sq", label:"Post · 1080×1080", spec:"igSquare", render:(dw, dh) => (
+          <FHBleed dw={dw} dh={dh} img="assets/pool-spouts.jpg" pos="50% 60%"
+            eyebrow="The Place" title="A pool of green tile." foot="Three oxidised-steel spouts · checkerboard tile" />
+        )})}
+
+        {art({ id:"ig-pt", label:"Portrait · 1080×1350", spec:"igPortrait", render:(dw, dh) => (
+          <FHBand dw={dw} dh={dh} img="assets/villa-dua.jpg" pos="50% 38%" imgFrac={0.7}
+            eyebrow="The Villas" title="Four villas, four headboards." foot="Villa Dua · woven rattan" />
+        )})}
+
+        {art({ id:"ig-st", label:"Story · 1080×1920", spec:"igStory", render:(dw, dh) => (
+          <FHBleed dw={dw} dh={dh} img="assets/corridor-dusk.jpg" pos="50% 50%"
+            eyebrow="The Grounds" title="Through the gate, into the trees." foot="A teak-lattice corridor at dusk" />
+        )})}
+
+        {art({ id:"ig-mat", label:"Materials card · 1080×1080", spec:"igSquare", render:(dw, dh) => (
+          <FHFramed dw={dw} dh={dh} img="assets/interior-rattan.jpg" pos="50% 55%"
+            eyebrow="Interiors & Materials" title="Cream stucco, warm teak."
+            swatches={[{c:"#75502E",t:"Teak"},{c:"#EFE7D6",t:"Stucco"},{c:"#9E5232",t:"Terracotta"},{c:"#6E6A62",t:"Andesite"},{c:"#1B4D3E",t:"Pool tile"}]} />
+        )})}
+      </DCSection>
+
+      <DCSection id="pinterest" title="Pinterest" subtitle="Pin 2:3 · 1000×1500">
+        {art({ id:"pin-coffee", label:"Pin · 1000×1500", spec:"pin", render:(dw, dh) => (
+          <FHBleed dw={dw} dh={dh} img="assets/coffee-nook.jpg" pos="50% 45%"
+            eyebrow="In the villa" title="A coffee nook in oak." foot="Espresso bar · brass rail · stone counter" />
+        )})}
+
+        {art({ id:"pin-tiga", label:"Pin · 1000×1500", spec:"pin", render:(dw, dh) => (
+          <FHBand dw={dw} dh={dh} img="assets/villa-tiga.jpg" pos="50% 42%" imgFrac={0.72} band="#7A4F2B"
+            eyebrow="Villa Tiga" title="Checkerboard inlay." foot="A wood headboard, edged in darker timber" />
+        )})}
+      </DCSection>
+
+      <DCSection id="meta-x" title="Facebook & X" subtitle="Link 1.91:1 · Post 16:9">
+        {art({ id:"fb-link", label:"Link card · 1200×630", spec:"fbLink", k:Kw, render:(dw, dh) => (
+          <FHBleed dw={dw} dh={dh} img="assets/villa-aerial-high.jpg" pos="50% 55%"
+            eyebrow="Nyang Nyang · Bali" title="A boutique hotel of four villas." foot="FH · Interiors by MarMar Studio" />
+        )})}
+
+        {art({ id:"x-post", label:"Post · 1600×900", spec:"xPost", k:0.36, render:(dw, dh) => (
+          <FHBleed dw={dw} dh={dh} img="assets/marmar-gate.jpg" pos="50% 50%"
+            eyebrow="Arrival" title="Through the gate, into the trees." foot="Nyang Nyang · Bali" />
+        )})}
+      </DCSection>
+
+      <DCSection id="reels" title="Reels & Video" subtitle="Story 9:16 · Landscape 16:9 — autoplaying clip">
+        {art({ id:"reel-story", label:"Reel · 1080×1920", spec:"igStory", render:(dw, dh) => (
+          <FHBandVideo dw={dw} dh={dh} src="assets/film-reel.mp4" poster="assets/film-reel-poster.jpg" pos="50% 40%"
+            imgFrac={0.66} eyebrow="From sunrise, to us" title="A barefoot morning on the cove." foot="Nyang Nyang · Bali · 0:13" />
+        )})}
+
+        {art({ id:"reel-wide", label:"Landscape · 1600×900", spec:"xPost", k:0.36, render:(dw, dh) => (
+          <FHBleedVideo dw={dw} dh={dh} src="assets/film-reel.mp4" poster="assets/film-reel-poster.jpg" pos="50% 45%"
+            eyebrow="Arrival" title="Where the day begins." foot="FH · Nyang Nyang" />
+        )})}
+      </DCSection>
+
+      <DCSection id="film" title="Film" subtitle="YouTube · 16:9">
+        <DCArtboard id="yt-film" label="Film · 1280×720" width={Math.round(1280 * 0.5)} height={Math.round(720 * 0.5)}>
+          <div style={{ width: 1280 * 0.5, height: 720 * 0.5, background: "#241A12" }}>
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/LE9e-Gbb1Nk?rel=0&modestbranding=1"
+              title="FH · Nyang Nyang — a film through the grounds"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+              style={{ width: "100%", height: "100%", border: 0, display: "block" }} />
+          </div>
+        </DCArtboard>
+      </DCSection>
+    </DesignCanvas>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>

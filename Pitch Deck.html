@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FH · Nyang Nyang — Pitch Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  deck-stage:not(:defined) { visibility: hidden; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #160F09; }
+
+  :root {
+    --cream:#F4ECDF; --paper:#FBF6EC; --sand:#E3D2B6; --bronze:#B79165;
+    --terracotta:#B5673E; --brick:#9E5232; --teak:#75502E; --espresso:#241A12;
+    --andesite:#6E6A62; --pool:#2F7E73; --ink:#2B2117; --ink-soft:#5B5247;
+    --display:"Cormorant Garamond", Georgia, serif;
+    --sans:"Jost", system-ui, sans-serif;
+  }
+
+  section {
+    font-family: var(--sans); color: var(--ink); overflow: hidden;
+    font-weight: 300;
+  }
+  .slide-pad { position: absolute; inset: 0; padding: 110px 130px; display: flex; flex-direction: column; }
+  .center { justify-content: center; }
+
+  h1,h2,h3 { margin: 0; font-weight: 400; }
+  .serif { font-family: var(--display); }
+  .eyebrow { font-size: 24px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--terracotta); font-weight: 400; }
+  .eyebrow.light { color: var(--sand); }
+  .measure { max-width: 60ch; font-size: 27px; line-height: 1.6; color: var(--ink-soft); }
+  .measure.light { color: rgba(244,236,223,0.78); }
+
+  /* backgrounds */
+  .bg-paper { background: var(--paper); }
+  .bg-cream { background: var(--cream); }
+  .bg-dark  { background: var(--espresso); color: var(--cream); }
+  .bg-terra { background: var(--terracotta); color: var(--cream); }
+
+  .full-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .scrim { position: absolute; inset: 0; background: linear-gradient(to top, rgba(20,14,8,0.82) 0%, rgba(20,14,8,0.25) 45%, rgba(20,14,8,0.1) 70%, rgba(20,14,8,0.4) 100%); }
+  .scrim-l { position: absolute; inset: 0; background: linear-gradient(to right, rgba(20,14,8,0.8) 0%, rgba(20,14,8,0.35) 45%, rgba(20,14,8,0) 75%); }
+
+  .mono { font-family: var(--display); font-weight: 500; line-height: 0.85; letter-spacing: 0.02em; }
+
+  /* number/label rows */
+  .stat-row { display: flex; gap: 70px; }
+  .stat .n { font-family: var(--display); font-size: 92px; line-height: 1; color: var(--terracotta); }
+  .stat .l { font-size: 24px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); margin-top: 10px; }
+  .bg-dark .stat .n { color: var(--bronze); }
+  .bg-dark .stat .l { color: rgba(244,236,223,0.7); }
+
+  /* two-column split */
+  .split { position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 1fr; }
+  .split.wide-r { grid-template-columns: 0.85fr 1.15fr; }
+  .split .panel { padding: 110px 90px; display: flex; flex-direction: column; justify-content: center; }
+  .split .imgcol { position: relative; overflow: hidden; }
+  .split .imgcol img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* feature list */
+  .flist { list-style: none; margin: 40px 0 0; padding: 0; }
+  .flist li { padding: 20px 0; border-top: 1px solid rgba(43,33,23,0.14); display: flex; gap: 24px; align-items: baseline; font-size: 23px; }
+  .flist.light li { border-color: rgba(244,236,223,0.18); }
+  .flist li .k { font-family: var(--display); font-size: 26px; color: var(--terracotta); min-width: 52px; }
+  .flist.light li .k { color: var(--bronze); }
+  .flist li .v { color: var(--ink-soft); }
+  .flist.light li .v { color: rgba(244,236,223,0.78); }
+
+  /* villa grid */
+  .villas { display: grid; grid-template-columns: repeat(4,1fr); gap: 26px; margin-top: 56px; }
+  .villas .v { position: relative; border-radius: 4px; overflow: hidden; aspect-ratio: 3/4; background:#1c140d; }
+  .villas .v img { width: 100%; height: 100%; object-fit: cover; }
+  .villas .v .cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 22px 20px; background: linear-gradient(transparent, rgba(13,9,5,0.85)); color: var(--cream); }
+  .villas .v .cap .nm { font-family: var(--display); font-size: 34px; line-height: 1; }
+  .villas .v .cap .sb { font-size: 24px; letter-spacing: 0.08em; color: rgba(244,236,223,0.82); margin-top: 8px; }
+
+  /* swatches */
+  .sw { display: flex; gap: 30px; margin-top: 48px; }
+  .sw .s { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+  .sw .s i { width: 76px; height: 76px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08); }
+  .sw .s span { font-size: 24px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); }
+
+  .kicker { font-size: 22px; letter-spacing: 0.06em; color: var(--ink-soft); }
+  .page-no { position: absolute; bottom: 56px; right: 130px; font-size: 24px; letter-spacing: 0.2em; color: var(--ink-soft); }
+  .bg-dark .page-no, .bg-terra .page-no { color: rgba(244,236,223,0.6); }
+  .footmark { position: absolute; bottom: 56px; left: 130px; font-size: 24px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); }
+  .bg-dark .footmark, .bg-terra .footmark { color: rgba(244,236,223,0.6); }
+
+  .tag { display:inline-flex; align-items:center; gap:12px; font-size: 24px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--terracotta); }
+  .tag::before { content:""; width: 40px; height: 1px; background: currentColor; }
+
+  /* entrance animation */
+  @media (prefers-reduced-motion: no-preference) {
+    [data-deck-active] .anim { animation: rise 0.7s cubic-bezier(0.22,0.61,0.36,1) both; }
+    [data-deck-active] .anim2 { animation: rise 0.7s 0.12s cubic-bezier(0.22,0.61,0.36,1) both; }
+    [data-deck-active] .anim3 { animation: rise 0.7s 0.24s cubic-bezier(0.22,0.61,0.36,1) both; }
+    @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+  }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 — TITLE -->
+  <section data-label="Title">
+    <img class="full-img" src="assets/story-villas-night.png" alt="The villas glowing among the trees at night" />
+    <div class="scrim"></div>
+    <div class="slide-pad center" style="align-items:flex-start;">
+      <div class="mono anim" style="font-size:300px; color:var(--cream);">FH</div>
+      <div class="anim2" style="font-size:30px; letter-spacing:0.5em; text-transform:uppercase; color:var(--sand); margin-top:6px;">Nyang Nyang · Bali</div>
+      <div class="serif anim3" style="font-size:46px; color:var(--cream); margin-top:40px; max-width:18ch; line-height:1.15;">A boutique hotel of four villas, and the website that tells its story.</div>
+    </div>
+    <div class="footmark" style="color:rgba(244,236,223,0.7);">Project Walkthrough</div>
+    <div class="page-no" style="color:rgba(244,236,223,0.7);">01</div>
+  </section>
+
+  <!-- 02 — THE PROJECT -->
+  <section data-label="The Project" class="bg-paper">
+    <div class="slide-pad center">
+      <div class="eyebrow anim">The Project</div>
+      <h2 class="serif anim" style="font-size:84px; line-height:1.04; margin-top:24px; max-width:20ch;">Four villas at Nyang Nyang, on Bali's Bukit.</h2>
+      <p class="measure anim2" style="margin-top:34px;">
+        A boutique hotel by MarMar Studio — perforated terracotta brick screens, eggshell-cream
+        lime stucco and single-slope ironwood-shingle roofs. Each villa is a single bedroom that
+        opens through glass to its own terrace and pool.
+      </p>
+      <div class="stat-row anim3" style="margin-top:70px;">
+        <div class="stat"><div class="n">04</div><div class="l">Private villas</div></div>
+        <div class="stat"><div class="n">50</div><div class="l">m² each villa</div></div>
+        <div class="stat"><div class="n">21</div><div class="l">m² terrace &amp; pool</div></div>
+        <div class="stat"><div class="n">01</div><div class="l">Scroll-driven site</div></div>
+      </div>
+    </div>
+    <div class="footmark">FH · Nyang Nyang</div>
+    <div class="page-no">02</div>
+  </section>
+
+  <!-- 03 — THE WEBSITE IDEA -->
+  <section data-label="The Site" class="bg-dark">
+    <div class="split">
+      <div class="panel">
+        <div class="tag anim">The Website</div>
+        <h2 class="serif anim" style="font-size:76px; line-height:1.05; margin-top:26px;">One scroll,<br />from sunrise to stay.</h2>
+        <p class="measure light anim2" style="margin-top:30px;">
+          A single-page, scroll-driven site. It opens on a cinematic day-arc — sunrise to
+          starlight — then unfolds: the place, a 3D build of the villas, the interiors, the four
+          headboards, the grounds, and the project film. One continuous scroll, from first light
+          to &ldquo;stay.&rdquo;
+        </p>
+      </div>
+      <div class="imgcol">
+        <img src="assets/villa-aerial-front.jpg" alt="The villas from the air" />
+        <div class="scrim-l"></div>
+      </div>
+    </div>
+    <div class="footmark">FH · Nyang Nyang</div>
+    <div class="page-no">03</div>
+  </section>
+
+  <!-- 04 — THE OPENING (carousel) -->
+  <section data-label="The Opening">
+    <img class="full-img" src="assets/story-beach-couple.png" alt="Dawn on the cove — a couple walking the beach" />
+    <div class="scrim"></div>
+    <div class="slide-pad center" style="align-items:flex-start;">
+      <div class="eyebrow light anim">Signature Moment · The Opening</div>
+      <h2 class="serif anim" style="font-size:88px; line-height:1.02; margin-top:24px; color:var(--cream); max-width:16ch;">From sunrise, to us.</h2>
+      <p class="measure light anim2" style="margin-top:30px; max-width:54ch;">
+        The site opens on a horizontal, scroll-driven carousel — six scenes across a single day.
+        Dawn on the cove, coffee for two, the pool at midday, golden hour in the garden, the
+        corridor at dusk, and the two of you under the stars. A sun-track marker arcs across the
+        day as you scroll, each scene carrying its own line.
+      </p>
+    </div>
+    <div class="footmark" style="color:rgba(244,236,223,0.7);">FH · Nyang Nyang</div>
+    <div class="page-no" style="color:rgba(244,236,223,0.7);">04</div>
+  </section>
+
+  <!-- 05 — THE 3D VILLA -->
+  <section data-label="The 3D Villa" class="bg-cream">
+    <div class="slide-pad center">
+      <div class="eyebrow anim">Signature Moment · The 3D Villa</div>
+      <h2 class="serif anim" style="font-size:80px; line-height:1.04; margin-top:24px; max-width:18ch;">The building draws itself, among the trees.</h2>
+      <div class="anim2" style="display:grid; grid-template-columns:repeat(4,1fr); gap:30px; margin-top:64px;">
+        <div>
+          <div class="serif" style="font-size:60px; color:var(--terracotta);">1</div>
+          <div style="font-size:22px; margin-top:10px; line-height:1.4;">Opens on a top-down architectural <b style="font-weight:500;">floor plan</b> of the four villas.</div>
+        </div>
+        <div>
+          <div class="serif" style="font-size:60px; color:var(--terracotta);">2</div>
+          <div style="font-size:22px; margin-top:10px; line-height:1.4;">Scroll is pinned — the <b style="font-weight:500;">roofs lift away</b> to reveal the rooms.</div>
+        </div>
+        <div>
+          <div class="serif" style="font-size:60px; color:var(--terracotta);">3</div>
+          <div style="font-size:22px; margin-top:10px; line-height:1.4;">The camera <b style="font-weight:500;">dives inside</b> one villa — bed, bath, the plunge pool.</div>
+        </div>
+        <div>
+          <div class="serif" style="font-size:60px; color:var(--terracotta);">4</div>
+          <div style="font-size:22px; margin-top:10px; line-height:1.4;">It rises and pulls back to a <b style="font-weight:500;">3/4 aerial</b> of the finished complex.</div>
+        </div>
+      </div>
+      <p class="measure anim3" style="margin-top:56px; font-size:23px;">
+        Built in Three.js with a faithful model of the complex — interiors, plunge pools with the
+        checkerboard tile, the teak-lattice corridor — driven by GSAP ScrollTrigger.
+      </p>
+    </div>
+    <div class="footmark">FH · Nyang Nyang</div>
+    <div class="page-no">05</div>
+  </section>
+
+  <!-- 06 — THE PLACE -->
+  <section data-label="The Place">
+    <img class="full-img" src="assets/pool-spouts.jpg" alt="A villa pool with three oxidised-steel spouts" />
+    <div class="scrim-l"></div>
+    <div class="slide-pad center" style="max-width:50%;">
+      <div class="eyebrow light anim">The Place</div>
+      <h2 class="serif anim" style="font-size:80px; line-height:1.04; margin-top:24px; color:var(--cream);">Terracotta walls, a pool of green tile.</h2>
+      <p class="measure light anim2" style="margin-top:30px;">
+        Each villa opens to its own terrace and pool: a terracotta wall set with three
+        oxidised-steel spouts, a green-and-white checkerboard tile, an arched outdoor shower.
+      </p>
+    </div>
+    <div class="footmark" style="color:rgba(244,236,223,0.7);">FH · Nyang Nyang</div>
+    <div class="page-no" style="color:rgba(244,236,223,0.7);">06</div>
+  </section>
+
+  <!-- 07 — THE VILLAS -->
+  <section data-label="The Villas" class="bg-dark">
+    <div class="slide-pad">
+      <div class="eyebrow light anim">The Villas</div>
+      <h2 class="serif anim" style="font-size:76px; line-height:1.02; margin-top:20px; color:var(--cream);">Four villas, four headboards.</h2>
+      <p class="measure light anim2" style="margin-top:24px; font-size:24px;">
+        A teak-lattice corridor links the four. Each carries its own custom headboard, designed by MarMar Studio.
+      </p>
+      <div class="villas anim3">
+        <div class="v"><img src="assets/villa-satu.jpg" alt="Villa Satu" style="object-position:30% 50%;" /><div class="cap"><div class="nm serif">Satu</div><div class="sb">Wavy headboard</div></div></div>
+        <div class="v"><img src="assets/villa-dua-2.jpg" alt="Villa Dua" style="object-position:50% 40%;" /><div class="cap"><div class="nm serif">Dua</div><div class="sb">Woven rattan</div></div></div>
+        <div class="v"><img src="assets/villa-tiga-2.jpg" alt="Villa Tiga" /><div class="cap"><div class="nm serif">Tiga</div><div class="sb">Checkerboard inlay</div></div></div>
+        <div class="v"><img src="assets/villa-enam.jpg" alt="Villa Enam" /><div class="cap"><div class="nm serif">Enam</div><div class="sb">Framed panels</div></div></div>
+      </div>
+    </div>
+    <div class="page-no">07</div>
+  </section>
+
+  <!-- 08 — INTERIORS & MATERIALS -->
+  <section data-label="Interiors">
+    <div class="split wide-r">
+      <div class="panel bg-cream">
+        <div class="eyebrow anim">Interiors &amp; Materials</div>
+        <h2 class="serif anim" style="font-size:68px; line-height:1.04; margin-top:22px;">A teak lattice, and stone underfoot.</h2>
+        <p class="measure anim2" style="margin-top:26px; font-size:23px;">
+          Single-slope ceilings of exposed beams, wicker-bladed fans and linen curtains. Bathrooms
+          in green glass mosaic with matte-black fittings; doors in teak and ulin.
+        </p>
+        <div class="sw anim3">
+          <div class="s"><i style="background:#75502E"></i><span>Teak</span></div>
+          <div class="s"><i style="background:#EFE7D6"></i><span>Stucco</span></div>
+          <div class="s"><i style="background:#9E5232"></i><span>Terracotta</span></div>
+          <div class="s"><i style="background:#6E6A62"></i><span>Andesite</span></div>
+          <div class="s"><i style="background:#1B4D3E"></i><span>Pool tile</span></div>
+        </div>
+      </div>
+      <div class="imgcol"><img src="assets/corridor-dusk.jpg" alt="The teak-lattice corridor at dusk" /></div>
+    </div>
+    <div class="footmark">FH · Nyang Nyang</div>
+    <div class="page-no">08</div>
+  </section>
+
+  <!-- 09 — THE GROUNDS -->
+  <section data-label="The Grounds">
+    <div class="split">
+      <div class="imgcol"><img src="assets/marmar-gate.jpg" alt="The entrance gate" /></div>
+      <div class="panel bg-dark">
+        <div class="tag anim" style="color:var(--bronze);">The Grounds</div>
+        <h2 class="serif anim" style="font-size:72px; line-height:1.05; margin-top:24px; color:var(--cream);">Through the gate, into the trees.</h2>
+        <p class="measure light anim2" style="margin-top:28px;">
+          Arrival is through a teak door in a slatted timber wall, the name in lit signage. Inside,
+          each villa keeps a built-in oak coffee &amp; mini-bar nook. The villas stand among the
+          trees, under broad single-slope roofs.
+        </p>
+        <div class="tag anim3" style="margin-top:40px; color:var(--bronze);">Section closes with the project film</div>
+      </div>
+    </div>
+    <div class="page-no">09</div>
+  </section>
+
+  <!-- 10 — SOCIAL KIT -->
+  <section data-label="Social Kit" class="bg-terra">
+    <div class="slide-pad center">
+      <div class="eyebrow light anim">Beyond the Site</div>
+      <h2 class="serif anim" style="font-size:80px; line-height:1.04; margin-top:24px; color:var(--cream); max-width:20ch;">A matching social kit, on one canvas.</h2>
+      <p class="measure anim2" style="margin-top:30px; color:rgba(244,236,223,0.88); max-width:62ch;">
+        The same palette and imagery, sized for every platform — Instagram post, portrait and story;
+        Pinterest pins; Facebook and X cards; and the project film. A pan-and-zoom canvas, ready to post.
+      </p>
+      <div class="flist light anim3" style="max-width:760px;">
+        <li><span class="k">IG</span><span class="v">Square 1:1 · Portrait 4:5 · Story 9:16 · Materials card</span></li>
+        <li><span class="k">PIN</span><span class="v">Two 2:3 pins — coffee nook &amp; Villa Tiga</span></li>
+        <li><span class="k">FB/X</span><span class="v">Link card 1.91:1 · Post 16:9 · Film</span></li>
+      </div>
+    </div>
+    <div class="footmark" style="color:rgba(244,236,223,0.7);">FH · Nyang Nyang</div>
+    <div class="page-no" style="color:rgba(244,236,223,0.7);">10</div>
+  </section>
+
+  <!-- 11 — STACK / HOW IT'S BUILT -->
+  <section data-label="How It's Built" class="bg-paper">
+    <div class="slide-pad center">
+      <div class="eyebrow anim">How It's Built</div>
+      <h2 class="serif anim" style="font-size:76px; line-height:1.04; margin-top:24px;">Cinematic, responsive, grounded.</h2>
+      <div class="anim2" style="display:grid; grid-template-columns:repeat(3,1fr); gap:50px; margin-top:64px;">
+        <div>
+          <div class="tag">Motion</div>
+          <p class="kicker" style="margin-top:18px; line-height:1.5;">Three.js villa model + GSAP ScrollTrigger pin &amp; scrub. Warm liquid dividers between sections.</p>
+        </div>
+        <div>
+          <div class="tag">Responsive</div>
+          <p class="kicker" style="margin-top:18px; line-height:1.5;">Full mobile layout — hamburger menu, the villa corridor restacks vertically, lighter 3D on phones.</p>
+        </div>
+        <div>
+          <div class="tag">Content</div>
+          <p class="kicker" style="margin-top:18px; line-height:1.5;">Every word and material drawn from the MarMar Studio plans &amp; spec sheet. Nothing invented.</p>
+        </div>
+      </div>
+    </div>
+    <div class="footmark">FH · Nyang Nyang</div>
+    <div class="page-no">11</div>
+  </section>
+
+  <!-- 12 — CLOSING -->
+  <section data-label="Closing">
+    <img class="full-img" src="assets/villa-pavilion.jpg" alt="A villa pavilion among the trees" />
+    <div class="scrim"></div>
+    <div class="slide-pad center" style="align-items:center; text-align:center;">
+      <div class="mono anim" style="font-size:160px; color:var(--cream);">FH</div>
+      <div class="serif anim2" style="font-size:44px; color:var(--cream); margin-top:20px; max-width:24ch; line-height:1.2;">Four villas, held among the trees at Nyang Nyang.</div>
+      <div class="anim3" style="margin-top:34px; font-size:19px; letter-spacing:0.3em; text-transform:uppercase; color:var(--sand);">Interiors by MarMar Studio · marmar-studio.net</div>
+    </div>
+    <div class="page-no" style="color:rgba(244,236,223,0.7);">12</div>
+  </section>
+
+</deck-stage>
+
+<script src="deck-stage.js"></script>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FH · Nyang Nyang, Bali</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Marcellus&family=Bodoni+Moda:wght@400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ============ hidden SVG filters ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="fh-liquid" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.018" numOctaves="2" seed="7" result="n" />
+      <feDisplacementMap id="fh-disp" in="SourceGraphic" in2="n" scale="0" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+    <filter id="lq" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence class="lq-turb" type="fractalNoise" baseFrequency="0.009 0.012" numOctaves="2" seed="3" result="n" />
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="22" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </defs>
+</svg>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <a class="nav__brand" href="#top">FH <small>Nyang Nyang · Bali</small></a>
+  <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="nav__links" id="navLinks">
+    <a href="#place">The Place</a>
+    <a href="#collection">The Villas</a>
+    <a href="#interiors">Interiors</a>
+    <a href="#setting">The Grounds</a>
+    <a class="nav__cta" href="#enquire">Enquire</a>
+  </nav>
+</header>
+
+<!-- ============ STORY HERO — From Sunrise, To Us ============ -->
+<section class="story-hero" id="top" data-screen-label="From Sunrise, To Us">
+  <div class="story-stage" id="storyStage">
+    <div class="story-frames">
+      <div class="story-frame"><img src="assets/story-beach-couple.png" alt="Dawn — a barefoot walk along the cove" /><div class="story-grade g-dawn"></div></div>
+      <div class="story-frame"><img src="assets/story-coffee-woman.png" alt="Morning — coffee over the canopy" /><div class="story-grade g-morning"></div></div>
+      <div class="story-frame"><img src="assets/story-pool-couple.png" alt="Midday — at the pool's edge" /><div class="story-grade g-midday"></div></div>
+      <div class="story-frame"><img src="assets/story-garden-sunset.png" alt="Sunset — golden hour in the garden" /><div class="story-grade g-sunset"></div></div>
+      <div class="story-frame"><img src="assets/corridor-dusk.jpg" alt="Candlelit night" /><div class="story-grade g-night"></div></div>
+      <div class="story-frame"><img src="assets/story-villas-night.png" alt="Night — the villas glowing among the trees" /><div class="story-grade g-stars"></div></div>
+    </div>
+
+    <div class="story-overlay">
+      <div class="story-kicker">From sunrise, to us</div>
+      <div class="story-lines" id="storyLines">
+        <p>Some mornings, you don't want to wake from.</p>
+        <p>Coffee for two, and nowhere to be.</p>
+        <p>The whole day, and all of it yours.</p>
+        <p>And then — the sun lets go.</p>
+        <p>Stay.</p>
+        <p>Just the two of you, under everything.</p>
+      </div>
+    </div>
+
+    <div class="story-cue" id="storyCue">
+      <span>Begin the day</span>
+      <span class="scrollcue__line"></span>
+    </div>
+
+    <button class="story-arrow story-arrow--prev" id="storyPrev" aria-label="Previous scene">&#8249;</button>
+    <button class="story-arrow story-arrow--next" id="storyNext" aria-label="Next scene">&#8250;</button>
+    <div class="story-dots" id="storyDots" aria-label="Carousel navigation"></div>
+  </div>
+</section>
+
+<!-- ============ THE PLACE ============ -->
+<section class="band band--warm" id="place" data-screen-label="The Place">
+  <div class="wrap place__grid">
+    <div class="reveal">
+      <div class="eyebrow">The Place</div>
+      <h2 class="lede" style="margin-top:22px;">A teak door, and a name lit at dusk.</h2>
+      <p class="measure" style="margin-top:26px;">
+        A boutique hotel of four villas at Nyang Nyang, Bali. You arrive at a slatted timber
+        wall under a broad single-slope roof — a teak door, the name in lit signage, a scooter
+        at the gate. Beyond it, four villas in terracotta brick and eggshell-cream stucco,
+        each opening to a private terrace and pool.
+      </p>
+      <div class="place__stats">
+        <div><div class="stat__num">04</div><div class="stat__lbl">Private villas</div></div>
+        <div><div class="stat__num">50</div><div class="stat__lbl">m² each villa</div></div>
+        <div><div class="stat__num">21</div><div class="stat__lbl">m² terrace &amp; pool</div></div>
+      </div>
+    </div>
+    <figure class="place__figure reveal" style="margin:0;align-self:start;margin-top:-6px;">
+      <img src="assets/marmar-gate-dusk.jpg" alt="A villa entrance at dusk — a slatted timber wall with lit MAR MAR signage under a single-slope roof, a scooter parked at the gate" style="width:100%;height:auto;min-height:0;object-fit:contain;border-radius:4px;" />
+      <figcaption class="place__figcap">The entrance at dusk — timber-batten wall, lit signage, single-slope roof</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ HERO ============ -->
+<section class="hero-section" id="villa" data-screen-label="The Villa">
+  <div class="hero">
+    <canvas id="scene"></canvas>
+
+    <div id="heroOverlay" class="hero__overlay">
+      <div class="hero__mono">FH</div>
+      <div class="hero__sub">Nyang Nyang &middot; Bali</div>
+    </div>
+
+    <div id="scrollCue" class="scrollcue">
+      <span>Scroll</span>
+      <span class="scrollcue__line"></span>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- divider warm -> dark -->
+<svg class="liquid-divider" viewBox="0 0 1440 90" preserveAspectRatio="none" style="background:var(--bg-warm)">
+  <path d="M0,46 C 380,86 1040,6 1440,44 L1440,90 L0,90 Z" fill="var(--espresso)" filter="url(#lq)"></path>
+</svg>
+
+<!-- ============ THE COLLECTION (horizontal corridor) ============ -->
+<section class="corridor" id="collection" data-screen-label="The Villas">
+  <div class="corridor__inner">
+    <div class="corridor__track" id="corridorTrack">
+      <div class="corridor__intro">
+        <div class="eyebrow">The Villas</div>
+        <h2>Four villas,<br />four headboards.</h2>
+        <p>A teak-lattice corridor links the four. Each villa holds a single bedroom that
+           opens through glass to its own terrace and pool &mdash; and each carries its own
+           custom headboard, designed by MarMar Studio.</p>
+      </div>
+
+      <article class="house">
+        <img src="assets/villa-satu.jpg" alt="Villa Satu — wavy headboard, doors opening to the private pool" style="object-position:30% 50%;" />
+        <div class="house__tag">
+          <div class="house__no">Villa Satu · One</div>
+          <div class="house__name serif">Satu</div>
+          <div class="house__meta">Wavy headboard · private terrace &amp; pool</div>
+          <div class="house__price">50 m² · one bedroom</div>
+        </div>
+      </article>
+
+      <article class="house">
+        <img src="assets/villa-dua-2.jpg" alt="Villa Dua — woven rattan headboard, louvered doors opening to the pool and palms" style="object-position:50% 35%;" />
+        <div class="house__tag">
+          <div class="house__no">Villa Dua · Two</div>
+          <div class="house__name serif">Dua</div>
+          <div class="house__meta">Woven rattan headboard · private terrace &amp; pool</div>
+          <div class="house__price">50 m² · one bedroom</div>
+        </div>
+      </article>
+
+      <article class="house">
+        <img src="assets/villa-tiga-2.jpg" alt="Villa Tiga — wood headboard with checkerboard inlay edging, beamed ceiling, louvered doors to the pool" style="object-position:50% 45%;" />
+        <div class="house__tag">
+          <div class="house__no">Villa Tiga · Three</div>
+          <div class="house__name serif">Tiga</div>
+          <div class="house__meta">Checkerboard wood-inlay headboard · private terrace &amp; pool</div>
+          <div class="house__price">50 m² · one bedroom</div>
+        </div>
+      </article>
+
+      <article class="house">
+        <img src="assets/villa-enam.jpg" alt="Villa Enam — wood headboard with framed panels, mosaic-tiled bedsides, doors to the pool" style="object-position:50% 50%;" />
+        <div class="house__tag">
+          <div class="house__no">Villa Enam · Six</div>
+          <div class="house__name serif">Enam</div>
+          <div class="house__meta">Framed-panel wood headboard · private terrace &amp; pool</div>
+          <div class="house__price">50 m² · one bedroom</div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- divider dark -> paper -->
+<svg class="liquid-divider" viewBox="0 0 1440 90" preserveAspectRatio="none" style="background:var(--espresso)">
+  <path d="M0,42 C 420,2 980,84 1440,46 L1440,90 L0,90 Z" fill="var(--bg)" filter="url(#lq)"></path>
+</svg>
+
+<!-- ============ INTERIORS ============ -->
+<section class="interior" id="interiors" data-screen-label="Interiors">
+  <div class="interior__img reveal">
+    <img src="assets/corridor-dusk.jpg" alt="The teak-lattice corridor at dusk — shadow grid falling across andesite crazy-paving, shell sconces and potted palms" />
+  </div>
+  <div class="interior__copy reveal">
+    <div class="eyebrow">Interiors &amp; Materials</div>
+    <h2 class="lede" style="margin-top:20px;">A teak lattice,<br />and stone underfoot.</h2>
+    <p class="measure" style="margin-top:24px;">
+      A teak-lattice ceiling filters the light into a shifting grid across the honed
+      andesite crazy-paving. Ceramic shell sconces wash the eggshell-stucco walls, and
+      terracotta-potted palms line the way. Within the rooms: single-slope ceilings of
+      exposed beams, wicker-bladed fans and linen curtains, with bathrooms in green glass
+      mosaic and matte-black fittings, doors in teak and ulin.
+    </p>
+    <div class="materials">
+      <div class="swatch"><i style="background:#75502E"></i><span>Teak</span></div>
+      <div class="swatch"><i style="background:#EFE7D6"></i><span>Lime stucco</span></div>
+      <div class="swatch"><i style="background:#9E5232"></i><span>Terracotta</span></div>
+      <div class="swatch"><i style="background:#6E6A62"></i><span>Andesite</span></div>
+      <div class="swatch"><i style="background:#B79165"></i><span>Rattan</span></div>
+      <div class="swatch"><i style="background:#1B4D3E"></i><span>Pool tile</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE SETTING ============ -->
+<section class="band band--warm" id="setting" data-screen-label="The Grounds">
+  <div class="wrap">
+    <div class="reveal" style="max-width:640px;">
+      <div class="eyebrow">The Grounds</div>
+      <h2 class="lede" style="margin-top:20px;">Through the gate, into the trees.</h2>
+      <p class="measure" style="margin-top:24px;">
+        Arrival is through a teak door in a slatted timber wall, the name in lit signage.
+        Inside, each villa keeps a built-in oak coffee &amp; mini-bar nook &mdash; espresso
+        machine, cups hung on a brass rail, glassware and a stone counter. The villas stand
+        among the trees, under broad single-slope roofs.
+      </p>
+    </div>
+
+    <div class="loc__video reveal" style="margin-top:54px;">
+      <iframe
+        id="groundsVideo"
+        src="https://www.youtube-nocookie.com/embed/O84WknszEJk?rel=0&modestbranding=1&autoplay=1&mute=1&playsinline=1&loop=1&playlist=O84WknszEJk&enablejsapi=1"
+        title="FH · Nyang Nyang — a film through the grounds"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen></iframe>
+    </div>
+
+    <div class="reveal" style="margin-top:40px; display:flex; gap:16px; flex-wrap:wrap;">
+      <a class="canvas-btn" href="Social Posts.html">
+        <span class="canvas-btn__ico" aria-hidden="true">▦</span>
+        View the social media kit
+        <span class="canvas-btn__arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="canvas-btn canvas-btn--solid" href="Pitch Deck.html">
+        <span class="canvas-btn__ico" aria-hidden="true">▤</span>
+        Open the pitch deck
+        <span class="canvas-btn__arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- divider warm -> dark -->
+<svg class="liquid-divider" viewBox="0 0 1440 90" preserveAspectRatio="none" style="background:var(--bg-warm)">
+  <path d="M0,44 C 360,8 1080,84 1440,46 L1440,90 L0,90 Z" fill="var(--espresso)" filter="url(#lq)"></path>
+</svg>
+
+<!-- ============ ENQUIRE ============ -->
+<section class="enquire" id="enquire" data-screen-label="Enquire">
+  <div class="wrap band" style="padding-top:clamp(80px,11vh,150px);padding-bottom:clamp(80px,11vh,150px);">
+    <div class="enquire__grid">
+      <div class="reveal">
+        <div class="eyebrow">Enquire</div>
+        <h2 style="margin-top:18px;">Enquire about<br />a stay.</h2>
+        <p class="measure" style="color:rgba(244,236,223,0.7);margin-top:22px;">
+          Four villas at Nyang Nyang, Bali — Satu, Dua, Tiga and Enam. Leave your details
+          and we'll be in touch about a stay.
+        </p>
+      </div>
+
+      <form class="reveal" id="enquireForm">
+        <div class="field"><label>Full name</label><input type="text" placeholder="Your name" required /></div>
+        <div class="field"><label>Email</label><input type="email" placeholder="you@email.com" required /></div>
+        <div class="field">
+          <label>Villa of interest</label>
+          <select>
+            <option>No preference yet</option>
+            <option>Villa Satu</option>
+            <option>Villa Dua</option>
+            <option>Villa Tiga</option>
+            <option>Villa Enam</option>
+          </select>
+        </div>
+        <div class="field"><label>Message</label><textarea rows="3" placeholder="Anything you'd like us to know"></textarea></div>
+        <button class="btn" id="enquireBtn" type="submit">Send enquiry</button>
+        <p class="enquire__note">We'll reply by email.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__top">
+      <div class="foot__brand serif">FH</div>
+      <div class="foot__cols">
+        <div>
+          <h4>Where</h4>
+          <p>Nyang Nyang<br />Bali, Indonesia</p>
+        </div>
+        <div>
+          <h4>Enquiries</h4>
+          <a href="#enquire">Enquire about a stay</a>
+          <a href="https://www.marmar-studio.net" target="_blank" rel="noopener">marmar-studio.net</a>
+        </div>
+        <div>
+          <h4>Interiors by</h4>
+          <a href="https://instagram.com/marmarstudiobali" target="_blank" rel="noopener">MarMar Studio · @marmarstudiobali</a>
+          <a href="mailto:hello@marmar-studio.net">hello@marmar-studio.net</a>
+          <a href="tel:+6281227847931">+62 812 2784 7931</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot__base">
+      <span>© 2026 FH · Nyang Nyang — a boutique hotel, Bali. Project name TBC.</span>
+      <span>Nyang Nyang · Bali · Indonesia</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ TWEAKS ============ -->
+<aside id="tweaks">
+  <h5>Tweaks <button id="twClose" class="tw-close" title="Close">×</button></h5>
+  <div class="tw-row">
+    <label>Palette</label>
+    <div class="seg" data-seg="palette">
+      <button data-val="terracotta">Terracotta</button>
+      <button data-val="espresso">Espresso</button>
+      <button data-val="sand">Sand</button>
+    </div>
+  </div>
+  <div class="tw-row">
+    <label>Display type</label>
+    <div class="seg" data-seg="font">
+      <button data-val="cormorant">Cormorant</button>
+      <button data-val="marcellus">Marcellus</button>
+      <button data-val="bodoni">Bodoni</button>
+    </div>
+  </div>
+  <div class="tw-row">
+    <label>Intro length (scroll)</label>
+    <input type="range" id="twMotion" min="1" max="5" step="1" />
+  </div>
+</aside>
+
+<!-- ============ SCRIPTS ============ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="hero3d.js"></script>
+<script src="site.js"></script>
+</body>
+</html>
