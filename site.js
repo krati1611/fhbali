@@ -11,11 +11,6 @@
   gsap.registerPlugin(ScrollTrigger);
 
   /* ---------- hero 3D ---------- */
-  FHHero.init($("#scene"));
-
-  const canvas = $("#scene");
-  const overlay = $("#heroOverlay");
-  const cue = $("#scrollCue");
   const nav = $("#nav");
 
   /* ---------- persisted tweak state ---------- */
@@ -26,40 +21,9 @@
   let intensity = state.motion;
 
   /* ---------- hero scroll choreography ---------- */
-  let heroST = null;
-  const pinLen = () => Math.round(window.innerHeight * (1.2 + intensity * 0.55));
-
   function buildHero() {
-    if (heroST) heroST.kill();
-    heroST = ScrollTrigger.create({
-      trigger: ".hero-section",
-      start: "top top",
-      end: () => "+=" + pinLen(),
-      pin: ".hero",
-      scrub: 0.6,
-      refreshPriority: 2,
-      invalidateOnRefresh: true,
-      onUpdate: (self) => updateHero(self.progress),
-    });
-    updateHero(heroST.progress || 0);
+    // Hero 3D section removed
   }
-
-  function updateHero(p) {
-    // camera travels across the full pin — no photo crossfade at the end
-    FHHero.setProgress(clamp(p));
-
-    // monogram fades out early
-    const mono = 1 - clamp(p / 0.18);
-    overlay.style.opacity = mono;
-    overlay.style.transform = `scale(${1 + (1 - mono) * 0.06}) translateY(${(1 - mono) * -10}px)`;
-    cue.style.opacity = 1 - clamp(p / 0.1);
-  }
-
-  function setReveal(rp) {
-    /* removed: hero no longer crossfades to a photo */
-  }
-
-  buildHero();
 
   /* ---------- STORY HERO: From Sunrise, To Us (scroll-driven horizontal carousel) ---------- */
   const storyStage = $("#storyStage");
